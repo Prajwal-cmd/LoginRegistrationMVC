@@ -4,15 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - LoginRegistrationMVC</title>
+    <link rel="stylesheet" href="~/css/Site.css" asp-append-version="true" />
 </head>
 <body>
     <div class="navbar">
         <ul>
-            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-            <li>@Html.ActionLink("About", "About", "Home")</li>
-            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-            <li>@Html.ActionLink("Login", "Login", "Account")</li>
-            <li>@Html.ActionLink("Register", "Register", "Account")</li>
+            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+            <li><a href="@Url.Action("About", "Home")">About</a></li>
+            <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+            <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+            <li><a href="@Url.Action("Register", "Account")">Register</a></li>
         </ul>
     </div>
     <div class="container">

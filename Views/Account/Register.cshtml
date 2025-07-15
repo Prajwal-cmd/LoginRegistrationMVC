@@ -5,11 +5,10 @@
 }
 
 <h2>Register</h2>
+<div id="register-message" style="display: none;"></div>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post))
-{
+<form id="register-form">
     @Html.AntiForgeryToken()
-
     <div>
         @Html.LabelFor(m => m.Email)
         @Html.TextBoxFor(m => m.Email)
@@ -28,9 +27,45 @@
     <div>
         <input type="submit" value="Register" />
     </div>
-}
+</form>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#register-form").submit(function (e) {
+                e.preventDefault();
+
+                if ($(this).valid()) {
+                    var formData = {
+                        Email: $("#Email").val(),
+                        Password: $("#Password").val(),
+                        ConfirmPassword: $("#ConfirmPassword").val(),
+                        __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val()
+                    };
+
+                    $.ajax({
+                        url: "@Url.Action("Register", "Account")",
+                        type: "POST",
+                        data: formData,
+                        success: function (response) {
+                            if (response.Success) {
+                                $("#register-message").text(response.Message).css("color", "green").show();
+                                setTimeout(function () {
+                                    window.location.href = "@Url.Action("Login", "Account")";
+                                }, 1000);
+                            } else {
+                                $("#register-message").text(response.Message).css("color", "red").show();
+                            }
+                        },
+                        error: function (xhr) {
+                            var errorMessage = xhr.responseText || "Registration failed.";
+                            $("#register-message").text(errorMessage).css("color", "red").show();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 }

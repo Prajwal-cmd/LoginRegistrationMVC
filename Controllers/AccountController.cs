@@ -1,7 +1,8 @@
-﻿using System.Web.Mvc;
-using LoginRegistrationMVC.Models;
+﻿using System.Linq;
+using System.Web.Mvc;
 using LoginRegistrationMVC.Data;
 using LoginRegistrationMVC.Helpers;
+using LoginRegistrationMVC.Models;
 
 namespace LoginRegistrationMVC.Controllers
 {
@@ -14,62 +15,63 @@ namespace LoginRegistrationMVC.Controllers
             _userRepository = new UserRepository();
         }
 
-        // GET: /Account/
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: /Account/Login
         public ActionResult Login()
         {
             return View();
         }
 
-        // POST: /Account/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = _userRepository.GetUserByEmail(model.Email);
-                if (user != null && PasswordHelper.VerifyPassword(model.Password, user.HashedPassword))
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                ModelState.AddModelError("", "Invalid email or password.");
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                return Json(new { Success = false, Message = string.Join("; ", errors) });
             }
-            return View(model);
+
+            var user = _userRepository.GetUserByEmail(model.Email);
+            if (user != null && PasswordHelper.VerifyPassword(model.Password, user.HashedPassword))
+            {
+                return Json(new { Success = true, Message = "Login successful" });
+            }
+
+            return Json(new { Success = false, Message = "Invalid email or password." });
         }
 
-        // GET: /Account/Register
         public ActionResult Register()
         {
             return View();
         }
 
-        // POST: /Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var existingUser = _userRepository.GetUserByEmail(model.Email);
-                if (existingUser == null)
-                {
-                    var user = new User
-                    {
-                        Email = model.Email,
-                        HashedPassword = PasswordHelper.HashPassword(model.Password)
-                    };
-                    _userRepository.AddUser(user);
-                    return RedirectToAction("Login");
-                }
-                ModelState.AddModelError("", "Email is already registered.");
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage);
+                return Json(new { Success = false, Message = string.Join("; ", errors) });
             }
-            return View(model);
+
+            var existingUser = _userRepository.GetUserByEmail(model.Email);
+            if (existingUser != null)
+            {
+                return Json(new { Success = false, Message = "Email is already registered." });
+            }
+
+            var user = new User
+            {
+                Email = model.Email,
+                HashedPassword = PasswordHelper.HashPassword(model.Password)
+            };
+            _userRepository.AddUser(user);
+
+            return Json(new { Success = true, Message = "Registration successful" });
+        }
+        public ActionResult Index()
+        {
+            return View();
         }
     }
 }

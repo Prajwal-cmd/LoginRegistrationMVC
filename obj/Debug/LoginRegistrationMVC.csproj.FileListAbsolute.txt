@@ -87,3 +87,9 @@ C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\obj\Debug\LoginRegistrationMVC.
 C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\obj\Debug\LoginReg.BE393B11.Up2Date
 C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\obj\Debug\LoginRegistrationMVC.dll
 C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\obj\Debug\LoginRegistrationMVC.pdb
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\System.Net.Http.Formatting.dll
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\System.Web.Http.dll
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\System.Web.Http.WebHost.dll
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\System.Net.Http.Formatting.xml
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\System.Web.Http.xml
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\System.Web.Http.WebHost.xml

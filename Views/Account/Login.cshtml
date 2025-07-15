@@ -5,13 +5,10 @@
 }
 
 <h2>Login</h2>
+<div id="login-message" style="display: none;"></div>
 
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
-{
+<form id="login-form">
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "error" })
-
-
     <div>
         @Html.LabelFor(m => m.Email)
         @Html.TextBoxFor(m => m.Email)
@@ -25,9 +22,44 @@
     <div>
         <input type="submit" value="Login" />
     </div>
-}
+</form>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $("#login-form").submit(function (e) {
+                e.preventDefault();
+
+                if ($(this).valid()) {
+                    var formData = {
+                        Email: $("#Email").val(),
+                        Password: $("#Password").val(),
+                        __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val()
+                    };
+
+                    $.ajax({
+                        url: "@Url.Action("Login", "Account")",
+                        type: "POST",
+                        data: formData,
+                        success: function (response) {
+                            if (response.Success) {
+                                $("#login-message").text(response.Message).css("color", "green").show();
+                                setTimeout(function () {
+                                    window.location.href = "@Url.Action("Index", "Home")";
+                                }, 1000);
+                            } else {
+                                $("#login-message").text(response.Message).css("color", "red").show();
+                            }
+                        },
+                        error: function (xhr) {
+                            var errorMessage = xhr.responseText || "Login failed.";
+                            $("#login-message").text(errorMessage).css("color", "red").show();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 }

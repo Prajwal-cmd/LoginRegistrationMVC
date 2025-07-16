@@ -73,5 +73,31 @@ namespace LoginRegistrationMVC.Controllers
         {
             return View();
         }
+
+
+        public ActionResult Search()
+        {
+            var users = _userRepository.GetAllUsers(); 
+            var displayUsers = users.Select(u => new User
+            {
+                Id = u.Id,
+                Email = u.Email,
+                HashedPassword = null
+            }).ToList();
+            return View(displayUsers);
+        }
+
+        [HttpGet]
+        public ActionResult SearchData(string searchTerm = null, string filter = null)
+        {
+            var users = _userRepository.GetAllUsers(searchTerm, filter); 
+            var displayUsers = users.Select(u => new User
+            {
+                Id = u.Id,
+                Email = u.Email,
+                HashedPassword = null
+            }).ToList();
+            return Json(displayUsers, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -2,27 +2,48 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - LoginRegistrationMVC</title>
-    <link rel="stylesheet" href="~/css/Site.css" asp-append-version="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @Styles.Render("~/css")
 </head>
 <body>
-    <div class="navbar">
-        <ul>
-            <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-            <li><a href="@Url.Action("About", "Home")">About</a></li>
-            <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
-            <li><a href="@Url.Action("Login", "Account")">Login</a></li>
-            <li><a href="@Url.Action("Register", "Account")">Register</a></li>
-            <li><a href="@Url.Action("Search", "Account")">Search Users</a></li>
+    @if (!IsLoginOrRegisterPage() && User.Identity.IsAuthenticated)
+    {
 
-
-        </ul>
-    </div>
-    <div class="container">
-        @RenderBody()
-    </div>
+        <div class="app-container auth-layout">
+            <div class="sidebar">
+                @Html.Partial("_Sidebar")
+            </div>
+            <div class="main-content">
+                <div class="navbar">
+                    @Html.Partial("_Navbar")
+                </div>
+                <div class="page-content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="app-container guest-layout">
+            @RenderBody()
+        </div>
+    }
 
     @RenderSection("Scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/js/site.js"></script>
 </body>
 </html>
+
+@functions {
+    private bool IsLoginOrRegisterPage()
+    {
+        var route = HttpContext.Current.Request.RequestContext.RouteData;
+        var controller = route.Values["controller"]?.ToString();
+        var action = route.Values["action"]?.ToString();
+        return controller == "Account" && (action == "Login" || action == "Register");
+    }
+}

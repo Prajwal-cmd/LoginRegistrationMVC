@@ -4,66 +4,28 @@
 }
 
 <h2>Search Users</h2>
-<div>
-    <input type="text" id="searchInput" placeholder="Search by ID or Email..." />
-    <select id="filterSelect">
-        <option value="email">Email</option>
-        <option value="id">ID</option>
-    </select>
-    <div id="searchMessage" style="display: none; color: red;"></div>
-</div>
-<table id="usersTable" border="1" style="margin-top: 10px;">
+<input type="text" id="searchInput" placeholder="Search by email or name..." />
+<select id="filterSelect">
+    <option value="">All Roles</option>
+    <option value="User">User</option>
+    <option value="Admin">Admin</option>
+</select>
+<table>
     <thead>
         <tr>
             <th>ID</th>
             <th>Email</th>
+            <th>Name</th>
         </tr>
     </thead>
-    <tbody id="usersTableBody">
+    <tbody id="userTable">
         @foreach (var user in Model)
         {
             <tr>
                 <td>@user.Id</td>
                 <td>@user.Email</td>
+                <td>@user.Name</td>
             </tr>
         }
     </tbody>
 </table>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
-        $(document).ready(function () {
-            $("#searchInput").on("input", function () {
-                var searchTerm = $(this).val();
-                var filter = $("#filterSelect").val();
-                var params = { searchTerm: searchTerm };
-                if (filter) {
-                    params.filter = filter;
-                }
-                var url = "@Url.Action("SearchData", "Account")" + "?" + $.param(params);
-
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    success: function (response) {
-                        $("#usersTableBody").empty();
-                        if (response.length > 0) {
-                            $.each(response, function (index, user) {
-                                $("#usersTableBody").append(
-                                    "<tr><td>" + user.Id + "</td><td>" + user.Email + "</td></tr>"
-                                );
-                            });
-                        } else {
-                            $("#usersTableBody").append("<tr><td colspan='2'>No results found</td></tr>");
-                        }
-                    },
-                    error: function (xhr) {
-                        $("#searchMessage").text("Error fetching data.").show();
-                    }
-                });
-            });
-        });
-    </script>
-}

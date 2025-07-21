@@ -1,65 +1,50 @@
 ﻿@model LoginRegistrationMVC.Models.LoginViewModel
-
 @{
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
-<div id="login-message" style="display: none;"></div>
+<div class="auth-container">
+    <div class="auth-header">
+        <h2>Welcome Back</h2>
+        <p>Please sign in to your account</p>
+    </div>
 
-<form id="login-form">
-    @Html.AntiForgeryToken()
-    <div>
-        @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email)
-        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "error" })
+    <div id="login-message" class="alert alert-danger" style="display: none;"></div>
+
+    <form id="login-form">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, "Email Address")
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter your email" })
+            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, "Password")
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter your password" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+                Sign In
+            </button>
+        </div>
+    </form>
+
+    <div class="auth-links">
+        <p>Don't have an account? <a href="@Url.Action("Register", "Account")">Create one here</a></p>
     </div>
-    <div>
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password)
-        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "error" })
-    </div>
-    <div>
-        <input type="submit" value="Login" />
-    </div>
-</form>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $(document).ready(function () {
-            $("#login-form").submit(function (e) {
-                e.preventDefault();
-
-                if ($(this).valid()) {
-                    var formData = {
-                        Email: $("#Email").val(),
-                        Password: $("#Password").val(),
-                        __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val()
-                    };
-
-                    $.ajax({
-                        url: "@Url.Action("Login", "Account")",
-                        type: "POST",
-                        data: formData,
-                        success: function (response) {
-                            if (response.Success) {
-                                $("#login-message").text(response.Message).css("color", "green").show();
-                                setTimeout(function () {
-                                    window.location.href = "@Url.Action("Index", "Home")";
-                                }, 1000);
-                            } else {
-                                $("#login-message").text(response.Message).css("color", "red").show();
-                            }
-                        },
-                        error: function (xhr) {
-                            var errorMessage = xhr.responseText || "Login failed.";
-                            $("#login-message").text(errorMessage).css("color", "red").show();
-                        }
-                    });
-                }
-            });
-        });
+        var loginUrl = "@Url.Action("Login", "Account")";
+        var dashboardUrl = "@Url.Action("Dashboard", "Account")";
+        var registerUrl = "@Url.Action("Register", "Account")";
     </script>
+    <script src="~/js/site.js"></script>
 }

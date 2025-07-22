@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using LoginRegistrationMVC.Data;
 using LoginRegistrationMVC.Models;
@@ -17,21 +19,21 @@ namespace LoginRegistrationMVC.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public ActionResult Login(LoginViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return Json(new { Success = false, Message = string.Join("; ", ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage))) });
+                var user = _userRepository.GetUserByEmail(model.Email);
+
+                if (user != null && user.HashedPassword == model.Password)
+                {
+                    System.Web.Security.FormsAuthentication.SetAuthCookie(model.Email, false);
+                    return Json(new { Success = true, Message = "Login successful" });
+                }
+                ModelState.AddModelError("", "Invalid email or password.");
             }
-            var user = _userRepository.GetUserByEmail(model.Email);
-            if (user != null)
-            {
-                System.Web.Security.FormsAuthentication.SetAuthCookie(model.Email, false);
-                return Json(new { Success = true, Message = "Login successful" });
-            }
-            return Json(new { Success = false, Message = "Invalid email or password." });
+            return Json(new { Success = false, Message = string.Join("; ", ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage))) });
         }
 
         [AllowAnonymous]
@@ -41,52 +43,70 @@ namespace LoginRegistrationMVC.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [AllowAnonymous]
         public ActionResult Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
+                if (ModelState.IsValid)
+                {
+                    var existingUser = _userRepository.GetUserByEmail(model.Email);
+                    if (existingUser != null)
+                    {
+                        ModelState.AddModelError("email", "Email is already registered.");
+                    }
+                    else if (model.Password != model.ConfirmPassword)
+                    {
+                        ModelState.AddModelError("confirmPassword", "Passwords do not match.");
+                    }
+                    else
+                    {
+                        string imagePath = null;
+                        if (model.Image != null && model.Image.ContentLength > 0)
+                        {
+                            string uploadsFolder = Server.MapPath("~/Uploads");
+                            if (!Directory.Exists(uploadsFolder))
+                            {
+                                Directory.CreateDirectory(uploadsFolder);
+                            }
+                            string fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "_" + Path.GetFileName(model.Image.FileName);
+                            string path = Path.Combine(uploadsFolder, fileName);
+
+                            model.Image.SaveAs(path);
+                            imagePath = "/Uploads/" + fileName;
+                        }
+
+                        if (ModelState.IsValid) 
+                        {
+                            var user = new User
+                            {
+                                Email = model.Email,
+                                HashedPassword = model.Password,
+                                Name = model.Name,
+                                Gender = model.Gender,
+                                DateOfBirth = model.DateOfBirth,
+                                ImagePath = imagePath,
+                                Role = "User"
+                            };
+                            _userRepository.AddUser(user);
+                            System.Web.Security.FormsAuthentication.SetAuthCookie(model.Email, false);
+                            return Json(new { Success = true, Message = "Registration successful" });
+                        }
+                    }
+                }
                 return Json(new { Success = false, Message = string.Join("; ", ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage))) });
             }
-
-            var existingUser = _userRepository.GetUserByEmail(model.Email);
-            if (existingUser != null)
+            catch (Exception ex)
             {
-                return Json(new { Success = false, Message = "Email is already registered." });
+                return Json(new { Success = false, Message = "An error occurred during registration: " + ex.Message });
             }
-
-            string imagePath = null;
-            if (model.Image != null && model.Image.ContentLength > 0)
-            {
-                string uploadsFolder = Server.MapPath("~/Uploads");
-                Directory.CreateDirectory(uploadsFolder);
-                string fileName = Path.GetFileName(model.Image.FileName);
-                string path = Path.Combine(uploadsFolder, fileName);
-                model.Image.SaveAs(path);
-                imagePath = "/Uploads/" + fileName;
-            }
-
-            var user = new User
-            {
-                Email = model.Email,
-                HashedPassword = model.Password,
-                Name = model.Name,
-                Gender = model.Gender,
-                DateOfBirth = model.DateOfBirth,
-                ImagePath = imagePath,
-                Role = "User"
-            };
-            _userRepository.AddUser(user);
-            System.Web.Security.FormsAuthentication.SetAuthCookie(model.Email, false);
-            return Json(new { Success = true, Message = "Registration successful" });
         }
 
         [Authorize]
         public ActionResult Dashboard()
         {
             var user = _userRepository.GetUserByEmail(User.Identity.Name);
-            ViewBag.User = user; 
+            ViewBag.User = user;
             return View(user);
         }
 
@@ -95,43 +115,5 @@ namespace LoginRegistrationMVC.Controllers
             System.Web.Security.FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
-
-        // [AllowAnonymous]
-        // public ActionResult Search()
-        // {
-        //     var users = _userRepository.GetAllUsers() ?? new List<User>();
-        //     var displayUsers = users.Select(u => new User
-        //     {
-        //         Id = u.Id,
-        //         Email = u.Email,
-        //         Name = u.Name,
-        //         HashedPassword = null,
-        //         Gender = null,
-        //         DateOfBirth = default(DateTime),
-        //         ImagePath = null,
-        //         Role = null
-        //     }).ToList();
-        //     return View(displayUsers);
-        // }
-
-        // [HttpGet]
-        // [AllowAnonymous]
-        // public ActionResult SearchData(string searchTerm = null, string filter = null)
-        // {
-        //     var users = _userRepository.GetAllUsers(searchTerm, filter) ?? new List<User>();
-        //     var displayUsers = users.Select(u => new User
-        //     {
-        //         Id = u.Id,
-        //         Email = u.Email,
-        //         Name = u.Name,
-        //         HashedPassword = null,
-        //         Gender = null,
-        //         DateOfBirth = default(DateTime),
-        //         ImagePath = null,
-        //         Role = null
-        //     }).ToList();
-        //     return Json(displayUsers, JsonRequestBehavior.AllowGet);
-        // }
     }
 }
-

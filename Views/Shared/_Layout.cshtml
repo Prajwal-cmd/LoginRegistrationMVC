@@ -9,7 +9,6 @@
 <body>
     @if (!IsLoginOrRegisterPage() && User.Identity.IsAuthenticated)
     {
-
         <div class="app-container auth-layout">
             <div class="sidebar">
                 @Html.Partial("_Sidebar")
@@ -36,7 +35,6 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/js/site.js"></script>
 </body>
-</html>
 
 @functions {
     private bool IsLoginOrRegisterPage()

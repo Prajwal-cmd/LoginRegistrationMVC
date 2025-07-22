@@ -3,15 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|c:\\users\\hp\\desktop\\asp.net\\loginregistrationmvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|c:\\users\\hp\\desktop\\asp.net\\loginregistrationmvc\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
@@ -19,48 +11,76 @@
       "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\models\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:models\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\account\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\account\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\models\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:models\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\shared\\_navbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\shared\\_navbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\helpers\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:helpers\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\models\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:models\\loginviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\shared\\_sidebar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\shared\\_navbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\shared\\_navbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\account\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\account\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -71,28 +91,8 @@
       "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:views\\account\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\helpers\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|solutionrelative:helpers\\passwordhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D08B9A9D-1324-42FD-A9CF-8ED3C9210366}|LoginRegistrationMVC.csproj|C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -110,20 +110,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "site.js",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\js\\site.js",
               "RelativeDocumentMoniker": "js\\site.js",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\js\\site.js",
               "RelativeToolTip": "js\\site.js",
-              "ViewState": "AgIAACQAAAAAAAAAAAAYwD4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAABRwKAAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-07-17T06:23:55.103Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -131,116 +132,115 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Register.cshtml",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Account\\Register.cshtml",
               "RelativeToolTip": "Views\\Account\\Register.cshtml",
-              "ViewState": "AgIAADYAAAAAAAAAAAAAAC4AAABJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-15T10:02:52.317Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "BundleConfig.cs",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\App_Start\\BundleConfig.cs",
               "RelativeDocumentMoniker": "App_Start\\BundleConfig.cs",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\App_Start\\BundleConfig.cs",
               "RelativeToolTip": "App_Start\\BundleConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-17T12:13:45.376Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAsAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-07-16T08:59:28.038Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-16T08:59:28.038Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "Site.css",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\css\\Site.css",
               "RelativeDocumentMoniker": "css\\Site.css",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\css\\Site.css",
               "RelativeToolTip": "css\\Site.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEkBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAJMBAAAAAAAAAAAmwKwBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2025-07-16T04:46:25.271Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "_Sidebar.cshtml",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Shared\\_Sidebar.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Sidebar.cshtml",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Shared\\_Sidebar.cshtml",
               "RelativeToolTip": "Views\\Shared\\_Sidebar.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-17T16:23:47.113Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "_Navbar.cshtml",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Shared\\_Navbar.cshtml",
               "RelativeDocumentMoniker": "Views\\Shared\\_Navbar.cshtml",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Shared\\_Navbar.cshtml",
               "RelativeToolTip": "Views\\Shared\\_Navbar.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-17T16:22:43.417Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Account\\Login.cshtml",
               "RelativeToolTip": "Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAABEAAAAAAAAAAAAUwCoAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-15T10:02:16.479Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Controllers\\AccountController.cs",
               "RelativeToolTip": "Controllers\\AccountController.cs",
-              "ViewState": "AgIAAG4AAAAAAAAAAAAgwIoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAswG8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T10:08:16.842Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "Contact.cshtml",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Home\\Contact.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Contact.cshtml",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Home\\Contact.cshtml",
               "RelativeToolTip": "Views\\Home\\Contact.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-17T05:56:47.642Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "About.cshtml",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Home\\About.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\About.cshtml",
@@ -264,7 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
@@ -276,7 +276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Web.config",
               "RelativeDocumentMoniker": "Web.config",
@@ -289,7 +289,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 16,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "App_Start\\RouteConfig.cs",
@@ -301,7 +301,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "Global.asax.cs",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Global.asax.cs",
               "RelativeDocumentMoniker": "Global.asax.cs",
@@ -313,49 +313,49 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 3,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Data\\UserRepository.cs",
               "RelativeDocumentMoniker": "Data\\UserRepository.cs",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Data\\UserRepository.cs",
               "RelativeToolTip": "Data\\UserRepository.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAmwGwAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHAAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T10:04:05.267Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Dashboard.cshtml",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Account\\Dashboard.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Dashboard.cshtml",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Account\\Dashboard.cshtml",
               "RelativeToolTip": "Views\\Account\\Dashboard.cshtml",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwCYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-17T07:11:20.791Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 13,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Account\\Index.cshtml",
               "RelativeDocumentMoniker": "Views\\Account\\Index.cshtml",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Views\\Account\\Index.cshtml",
               "RelativeToolTip": "Views\\Account\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAACBAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-07-15T10:37:45.941Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 14,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Models\\User.cs",
               "RelativeDocumentMoniker": "Models\\User.cs",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Models\\User.cs",
               "RelativeToolTip": "Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T10:03:54.45Z"
             },
@@ -367,31 +367,31 @@
               "RelativeDocumentMoniker": "Models\\RegisterViewModel.cs",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Models\\RegisterViewModel.cs",
               "RelativeToolTip": "Models\\RegisterViewModel.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T10:03:31.951Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
               "Title": "LoginViewModel.cs",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Models\\LoginViewModel.cs",
               "RelativeDocumentMoniker": "Models\\LoginViewModel.cs",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Models\\LoginViewModel.cs",
               "RelativeToolTip": "Models\\LoginViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T10:03:35.061Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 8,
               "Title": "PasswordHelper.cs",
               "DocumentMoniker": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Helpers\\PasswordHelper.cs",
               "RelativeDocumentMoniker": "Helpers\\PasswordHelper.cs",
               "ToolTip": "C:\\Users\\Hp\\Desktop\\asp.net\\LoginRegistrationMVC\\Helpers\\PasswordHelper.cs",
               "RelativeToolTip": "Helpers\\PasswordHelper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T10:03:57.42Z"
             },

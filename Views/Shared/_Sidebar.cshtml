@@ -26,4 +26,17 @@
             Contact
         </a>
     </li>
+    <li>
+        <a href="@Url.Action("Index", "Students")" class="@(ViewContext.RouteData.Values["controller"].ToString() == "Students" && ViewContext.RouteData.Values["action"].ToString() == "Index" ? "active" : "")">
+            <i class="icon-users"></i>
+            Students
+        </a>
+    </li>
+
+    <li>
+        <a href="@Url.Action("Chat", "Account")" class="@(ViewContext.RouteData.Values["action"].ToString() == "Chat" ? "active" : "")">
+            <i class="icon-chat"></i>
+            Chat
+        </a>
+    </li>
 </ul>

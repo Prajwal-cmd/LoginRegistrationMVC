@@ -14,6 +14,10 @@ namespace LoginRegistrationMVC
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate.js",
                         "~/Scripts/jquery.validate.unobtrusive.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
+            "~/Scripts/jquery.signalR-{version}.js"));
+
             bundles.Add(new StyleBundle("~/css").Include( // Adjusted to css/ folder
                       "~/css/Site.css"));
 

@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Chat - LoginRegistrationMVC";
+}
+
+<div class="page-content">
+    <div class="card">
+        <div class="card-header">
+            <h3>Chat Room</h3>
+        </div>
+        <div class="card-body">
+            <div id="messageContainer" class="chat-messages" style="height: 400px; overflow-y: auto; border: 1px solid #e9ecef; padding: 10px; margin-bottom: 10px;">
+                <!-- Messages will be appended here -->
+            </div>
+            <div class="form-group">
+                <input type="text" id="messageInput" class="form-control" placeholder="Type a message" />
+            </div>
+            <button id="sendButton" class="btn btn-primary">Send to All</button>
+            <input type="text" id="privateUserInput" class="form-control" placeholder="Enter username to message" style="margin-top: 10px;" />
+            <button id="sendPrivateButton" class="btn btn-secondary">Send Private</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/signalr")
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            if (window.location.href.indexOf('Chat') > -1) {
+                if (typeof initializeChat === 'undefined') {
+                    console.error('initializeChat function is not defined. Check if site.js is loaded.');
+                } else {
+                    console.log('initializeChat is defined, calling it...');
+                    initializeChat();
+                }
+            }
+        });
+    </script>
+}

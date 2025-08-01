@@ -16,33 +16,444 @@ $.validator.addMethod("validDate", function (value, element) {
     return !isNaN(dob.getTime()) && dob < new Date();
 }, "Date of Birth must be a valid past date.");
 
+
+const apiBaseUrl = document.getElementById('hdnApiBaseUrl').value;
+const imageBaseUrl = document.getElementById('hdnImageBaseUrl').value;
+
+
+
+
+
+// Chat functionality
+var chat = null;
+var myUserName = null;
+
+function initializeChat() {
+    chat = $.connection.chatHub;
+
+    if (typeof chat === 'undefined') {
+        console.error('Chat hub proxy is undefined. Check SignalR setup.');
+        return;
+    }
+
+    // Handle incoming public messages
+    chat.client.broadcastMessage = function (user, message) {
+        var messageHtml = '<p><strong>' + user + ':</strong> ' + message + '</p>';
+        $('#messageContainer').append(messageHtml);
+        $('#messageContainer').scrollTop($('#messageContainer')[0].scrollHeight);
+    };
+
+    // Handle incoming private messages
+    chat.client.receivePrivateMessage = function (fromUser, message) {
+        var messageHtml = '<p><em>Private from ' + fromUser + ':</em> ' + message + '</p>';
+        $('#messageContainer').append(messageHtml);
+        $('#messageContainer').scrollTop($('#messageContainer')[0].scrollHeight);
+    };
+
+    // Handle error messages from server
+    chat.client.sendError = function (errorMessage) {
+        alert(errorMessage);
+    };
+
+    // Receive my username
+    chat.client.updateUserName = function (userName) {
+        myUserName = userName;
+        console.log('My username: ' + myUserName);
+    };
+
+    // Start the connection
+    $.connection.hub.start().done(function () {
+        console.log('Connected to chat hub');
+    }).fail(function (error) {
+        console.error('Could not connect to chat hub: ' + error);
+    });
+
+    // Send public message on button click
+    $('#sendButton').click(function () {
+        var message = $('#messageInput').val();
+        if (message) {
+            chat.server.sendMessage(message);
+            $('#messageInput').val(''); 
+        }
+    });
+
+    // Send private message on button click
+    $('#sendPrivateButton').click(function () {
+        var toUserName = $('#privateUserInput').val();
+        var message = $('#messageInput').val();
+        if (toUserName && message && toUserName !== myUserName) {
+            chat.server.sendPrivateMessage(toUserName, message);
+            $('#messageInput').val(''); 
+            $('#privateUserInput').val(''); 
+        } else if (toUserName === myUserName) {
+            alert('Cannot send private message to yourself!');
+        }
+    });
+
+    $('#messageInput').keypress(function (e) {
+        if (e.which === 13) {
+            if ($('#sendPrivateButton').is(':focus')) {
+                $('#sendPrivateButton').click();
+            } else {
+                $('#sendButton').click();
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
+function validateForm(config) {
+    var isValid = true;
+    config.fields.forEach(function (field) {
+        var value = $(field.id).val().trim();
+        var errorElement = $(field.errorId);
+
+        if (field.required && !value && !field.file) {
+            errorElement.text(field.requiredMessage).show();
+            isValid = false;
+        } else if (field.file) {
+            var fileInput = $(field.id)[0];
+            var file = fileInput.files && fileInput.files[0];
+
+            if (field.required && !file) {
+                errorElement.text(field.requiredMessage).show();
+                isValid = false;
+            } else if (file) {
+                var validTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
+                var maxSize = 5 * 1024 * 1024;
+
+                if (!validTypes.includes(file.type)) {
+                    errorElement.text("Image must be JPEG, PNG, or GIF.").show();
+                    isValid = false;
+                } else if (file.size > maxSize) {
+                    errorElement.text("Image size must not exceed 5MB.").show();
+                    isValid = false;
+                } else {
+                    errorElement.hide();
+                }
+            } else {
+                errorElement.hide();
+            }
+        } else {
+            errorElement.hide();
+            if (value) {
+                if (field.minLength && value.length < field.minLength) {
+                    errorElement.text(field.minLengthMessage).show();
+                    isValid = false;
+                } else if (field.customValidation && !$.validator.methods[field.customValidation].call(this, value, $(field.id)[0])) {
+                    errorElement.text(field.customValidationMessage).show();
+                    isValid = false;
+                } else if (field.matchField && value !== $(field.matchField).val().trim()) {
+                    errorElement.text(field.matchMessage).show();
+                    isValid = false;
+                }
+            }
+        }
+    });
+    return isValid;
+}
+
+
+
+
+
+
+
+
+function loadStudents() {
+    $.ajax({
+        url: apiBaseUrl + "Students",
+        type: "GET",
+        success: function (data) {
+            var tableBody = $('#studentsTableBody');
+            tableBody.empty();
+            if (data.length > 0) {
+                $.each(data, function (index, student) {
+                    tableBody.append(
+                        '<tr>' +
+                        '<td>' + (student.studentId || '') + '</td>' +
+                        '<td>' + (student.firstName || '') + '</td>' +
+                        '<td>' + (student.lastName || '') + '</td>' +
+                        '<td>' + (student.email || '') + '</td>' +
+                        '<td>' + (student.dateOfBirth ? new Date(student.dateOfBirth).toLocaleDateString() : '') + '</td>' +
+                        '<td>' + (student.gender || '') + '</td>' +
+                        '<td>' + (student.major || '') + '</td>' +
+                        '<td>' + (student.createdDate ? new Date(student.createdDate).toLocaleDateString() : '') + '</td>' +
+                        '<td>' +
+                      
+                        (student.imageUrl ? '<img src="' + imageBaseUrl + student.imageUrl + '" alt="Student Image" style="width: 50px; height: 50px;">' : 'No Image') +
+                        '</td>' +
+                        '<td>' +
+                        '<button class="action-btn edit-btn" data-id="' + (student.studentId || '') + '">Update</button>' +
+                        '<button class="action-btn delete-btn" data-id="' + (student.studentId || '') + '">Delete</button>' +
+                        '</td>' +
+                        '</tr>'
+                    );
+                });
+            } else {
+                tableBody.append('<tr><td colspan="10" class="no-data">No students found.</td></tr>');
+            }
+        },
+        error: function (xhr) {
+            var errorMsg = "Error loading students.";
+            try {
+                var response = JSON.parse(xhr.responseText);
+                errorMsg = response.error || response.Error || errorMsg;
+            } catch (e) { }
+            $('#studentsTableBody').html('<tr><td colspan="10" class="no-data">' + errorMsg + '</td></tr>');
+            console.log("AJAX error: ", xhr.responseText);
+        }
+    });
+}
+
+function openAddModal() {
+    $('#addStudentForm')[0].reset();
+    $('.error-message').hide();
+    $('#alertContainer').hide();
+    $('#addStudentModal').show();
+}
+
+function closeAddModal() {
+    $('#addStudentModal').hide();
+}
+
+function addStudent() {
+    var imageFile = $("#addImage")[0].files[0];
+
+    var config = {
+        fields: [
+            { id: "#addFirstName", errorId: "#addFirstName-error", required: true, requiredMessage: "First name is required.", minLength: 1, maxLength: 50, minLengthMessage: "First name cannot be empty.", maxLengthMessage: "First name cannot exceed 50 characters." },
+            { id: "#addLastName", errorId: "#addLastName-error", required: true, requiredMessage: "Last name is required.", minLength: 1, maxLength: 50, minLengthMessage: "Last name cannot be empty.", maxLengthMessage: "Last name cannot exceed 50 characters." },
+            { id: "#addEmail", errorId: "#addEmail-error", required: true, requiredMessage: "Email is required.", customValidation: "customEmail", customValidationMessage: "Email must be a valid address (e.g., user@domain.com)." },
+            { id: "#addDateOfBirth", errorId: "#addDateOfBirth-error", required: true, requiredMessage: "Date of birth is required.", customValidation: "validDate", customValidationMessage: "Date of birth must be a valid past date." },
+            { id: "#addGender", errorId: "#addGender-error", required: true, requiredMessage: "Gender is required." },
+            { id: "#addMajor", errorId: "#addMajor-error", maxLength: 50, maxLengthMessage: "Major cannot exceed 50 characters." },
+            { id: "#addImage", errorId: "#addImage-error", required: false, requiredMessage: "Image is required.", file: true }
+        ]
+    };
+
+    if (validateForm(config)) {
+        var formData = new FormData();
+        formData.append("FirstName", $("#addFirstName").val().trim());
+        formData.append("LastName", $("#addLastName").val().trim());
+        formData.append("Email", $("#addEmail").val().trim());
+        formData.append("DateOfBirth", $("#addDateOfBirth").val());
+        formData.append("Gender", $("#addGender").val());
+        formData.append("Major", $("#addMajor").val().trim());
+        if (imageFile) formData.append("Image", imageFile);
+
+        $.ajax({
+            url: apiBaseUrl + "Students",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('#alertContainer').html('<div class="alert alert-success">' + (response.Message || "Student added successfully") + '</div>').show();
+                setTimeout(function () {
+                    $('#alertContainer').hide();
+                    $('#addStudentModal').hide();
+                    loadStudents();
+                }, 2000);
+            },
+            error: function (xhr) {
+                var errorMsg = "Error adding student.";
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.Error) errorMsg = response.Error;
+                    else if (response.Errors) errorMsg = Object.values(response.Errors).flat().join(", ");
+                } catch (e) { }
+                $('#alertContainer').html('<div class="alert alert-error">' + errorMsg + '</div>').show();
+                console.log("AJAX error: ", xhr.responseText);
+            }
+        });
+    }
+}
+
+function deleteStudent(studentId) {
+    if (confirm("Are you sure you want to delete this student?")) {
+        $.ajax({
+            url: apiBaseUrl + "Students/" + studentId,
+            type: "DELETE",
+            success: function (response) {
+                $('#alertContainer').html('<div class="alert alert-success">' + (response.Message || "Student deleted successfully") + '</div>').show();
+                setTimeout(function () {
+                    $('#alertContainer').hide();
+                    loadStudents();
+                }, 2000);
+            },
+            error: function (xhr) {
+                var errorMsg = "Error deleting student.";
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    errorMsg = response.error || response.Error || errorMsg;
+                } catch (e) { }
+                $('#alertContainer').html('<div class="alert alert-error">' + errorMsg + '</div>').show();
+                console.log("AJAX error: ", xhr.responseText);
+            }
+        });
+    }
+}
+
+function openEditModal(studentId) {
+    $.ajax({
+        url: apiBaseUrl + "Students/" + studentId,
+        type: "GET",
+        success: function (student) {
+            $('#editStudentId').val(student.studentId);
+            $('#editFirstName').val(student.firstName);
+            $('#editLastName').val(student.lastName);
+            $('#editEmail').val(student.email);
+            $('#editDateOfBirth').val(student.dateOfBirth ? new Date(student.dateOfBirth).toISOString().split('T')[0] : '');
+            $('#editGender').val(student.gender);
+            $('#editMajor').val(student.major || '');
+            $('.error-message').hide();
+            $('#alertContainer').hide();
+            $('#editStudentModal').show();
+        },
+        error: function (xhr) {
+            var errorMsg = "Error loading student data.";
+            try {
+                var response = JSON.parse(xhr.responseText);
+                errorMsg = response.error || response.Error || errorMsg;
+            } catch (e) { }
+            $('#alertContainer').html('<div class="alert alert-error">' + errorMsg + '</div>').show();
+            console.log("AJAX error: ", xhr.responseText);
+        }
+    });
+}
+
+function closeEditModal() {
+    $('#editStudentModal').hide();
+}
+
+function updateStudent() {
+    var editImageElement = $("#editImage");
+    var imageFile = editImageElement.length > 0 && editImageElement[0].files ? editImageElement[0].files[0] : null;
+
+    var config = {
+        fields: [
+            { id: "#editFirstName", errorId: "#editFirstName-error", required: true, requiredMessage: "First name is required.", minLength: 1, maxLength: 50, minLengthMessage: "First name cannot be empty.", maxLengthMessage: "First name cannot exceed 50 characters." },
+            { id: "#editLastName", errorId: "#editLastName-error", required: true, requiredMessage: "Last name is required.", minLength: 1, maxLength: 50, minLengthMessage: "Last name cannot be empty.", maxLengthMessage: "Last name cannot exceed 50 characters." },
+            { id: "#editEmail", errorId: "#editEmail-error", required: true, requiredMessage: "Email is required.", customValidation: "customEmail", customValidationMessage: "Email must be a valid address (e.g., user@domain.com)." },
+            { id: "#editDateOfBirth", errorId: "#editDateOfBirth-error", required: true, requiredMessage: "Date of birth is required.", customValidation: "validDate", customValidationMessage: "Date of birth must be a valid past date." },
+            { id: "#editGender", errorId: "#editGender-error", required: true, requiredMessage: "Gender is required." },
+            { id: "#editMajor", errorId: "#editMajor-error", maxLength: 50, maxLengthMessage: "Major cannot exceed 50 characters." }
+        ]
+    };
+
+    if (imageFile) {
+        config.fields.push({
+            id: "#editImage",
+            errorId: "#editImage-error",
+            required: false,
+            file: true
+        });
+    }
+
+    if (validateForm(config)) {
+        var formData = new FormData();
+        formData.append("StudentId", $('#editStudentId').val());
+        formData.append("FirstName", $("#editFirstName").val().trim());
+        formData.append("LastName", $("#editLastName").val().trim());
+        formData.append("Email", $("#editEmail").val().trim());
+        formData.append("DateOfBirth", $("#editDateOfBirth").val());
+        formData.append("Gender", $("#editGender").val());
+        formData.append("Major", $("#editMajor").val().trim());
+        if (imageFile) formData.append("Image", imageFile);
+
+        $.ajax({
+            url: apiBaseUrl + "Students/" + $('#editStudentId').val(),
+            type: "PUT",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('#alertContainer').html('<div class="alert alert-success">' + (response.Message || "Student updated successfully") + '</div>').show();
+                setTimeout(function () {
+                    $('#alertContainer').hide();
+                    $('#editStudentModal').hide();
+                    loadStudents();
+                }, 2000);
+            },
+            error: function (xhr) {
+                var errorMsg = "Error updating student.";
+                try {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.Error) errorMsg = response.Error;
+                    else if (response.Errors) errorMsg = Object.values(response.Errors).flat().join(", ");
+                } catch (e) { }
+                $('#alertContainer').html('<div class="alert alert-error">' + errorMsg + '</div>').show();
+                console.log("AJAX error: ", xhr.responseText);
+            }
+        });
+    }
+}
+
+
 $(document).ready(function () {
+
+    loadStudents();
+
+    $(".add-btn").on("click", openAddModal);
+
+    $("#addStudentForm").on("submit", function (e) {
+        e.preventDefault();
+        addStudent();
+    });
+
+    $(".btn-secondary").on("click", function (e) {
+        e.preventDefault();
+        var modalId = $(this).closest('.modal-overlay').attr('id');
+        $('#' + modalId).hide();
+    });
+
+    $(document).on("click", ".delete-btn", function () {
+        var studentId = $(this).data("id");
+        deleteStudent(studentId);
+    });
+
+    $(document).on("click", ".edit-btn", function () {
+        var studentId = $(this).data("id");
+        openEditModal(studentId);
+    });
+
+    $("#editStudentForm").on("submit", function (e) {
+        e.preventDefault();
+        updateStudent();
+    });
+
     $("#loginButton").on("click", function () {
         var email = $("#email").val().trim();
         var password = $("#password").val().trim();
-        var isValid = true;
+        var config = {
+            fields: [
+                {
+                    id: "#email",
+                    errorId: "#email-error",
+                    required: true,
+                    requiredMessage: "Email is required.",
+                    customValidation: "customEmail",
+                    customValidationMessage: "Email must be a valid address (e.g., user@domain.com)."
+                },
+                {
+                    id: "#password",
+                    errorId: "#password-error",
+                    required: true,
+                    requiredMessage: "Password is required.",
+                    minLength: 6,
+                    minLengthMessage: "Password must be at least 6 characters."
+                }
+            ]
+        };
 
-        if (!email) {
-            $("#email-error").text("Email is required.").show();
-            isValid = false;
-        } else if (!$.validator.methods.customEmail.call(this, email, $("#email")[0])) {
-            $("#email-error").text("Email must be a valid address (e.g., user@domain.com).").show();
-            isValid = false;
-        } else {
-            $("#email-error").hide();
-        }
-
-        if (!password) {
-            $("#password-error").text("Password is required.").show();
-            isValid = false;
-        } else if (password.length < 6) {
-            $("#password-error").text("Password must be at least 6 characters.").show();
-            isValid = false;
-        } else {
-            $("#password-error").hide();
-        }
-
-        if (isValid) {
+        if (validateForm(config)) {
+            console.log("Form is valid, submitting...");
             var data = {
                 Email: email,
                 Password: password
@@ -94,83 +505,68 @@ $(document).ready(function () {
         var gender = $("#gender").val();
         var dateOfBirth = $("#date-of-birth").val();
         var imageFile = $("#image")[0].files[0];
-        var isValid = true;
+        var config = {
+            fields: [
+                {
+                    id: "#name",
+                    errorId: "#name-error",
+                    required: true,
+                    requiredMessage: "Name is required.",
+                    minLength: 1,
+                    maxLength: 50,
+                    minLengthMessage: "Name cannot be empty.",
+                    maxLengthMessage: "Name cannot exceed 50 characters."
+                },
+                {
+                    id: "#email",
+                    errorId: "#email-error",
+                    required: true,
+                    requiredMessage: "Email is required.",
+                    customValidation: "customEmail",
+                    customValidationMessage: "Email must be a valid address (e.g., user@domain.com)."
+                },
+                {
+                    id: "#password",
+                    errorId: "#password-error",
+                    required: true,
+                    requiredMessage: "Password is required.",
+                    minLength: 6,
+                    minLengthMessage: "Password must be at least 6 characters."
+                },
+                {
+                    id: "#confirm-password",
+                    errorId: "#confirm-password-error",
+                    required: true,
+                    requiredMessage: "Confirm Password is required.",
+                    matchField: "#password",
+                    matchMessage: "Confirm Password must match the password."
+                },
+                {
+                    id: "#gender",
+                    errorId: "#gender-error",
+                    required: true,
+                    requiredMessage: "Gender is required."
+                },
+                {
+                    id: "#date-of-birth",
+                    errorId: "#date-of-birth-error",
+                    required: true,
+                    requiredMessage: "Date of Birth is required.",
+                    customValidation: "validDate",
+                    customValidationMessage: "Date of Birth must be a valid past date."
+                },
+                {
+                    id: "#image",
+                    errorId: "#image-error",
+                    required: false, // Changed to optional
+                    requiredMessage: "Image is required.",
+                    file: true
+                }
+            ]
+        };
 
-        if (!name) {
-            $("#name-error").text("Name is required.").show();
-            isValid = false;
-        } else if (name.length > 50) {
-            $("#name-error").text("Name cannot exceed 50 characters.").show();
-            isValid = false;
-        } else {
-            $("#name-error").hide();
-        }
-
-        if (!email) {
-            $("#email-error").text("Email is required.").show();
-            isValid = false;
-        } else if (!$.validator.methods.customEmail.call(this, email, $("#email")[0])) {
-            $("#email-error").text("Email must be a valid address (e.g., user@domain.com).").show();
-            isValid = false;
-        } else {
-            $("#email-error").hide();
-        }
-
-        if (!password) {
-            $("#password-error").text("Password is required.").show();
-            isValid = false;
-        } else if (password.length < 6) {
-            $("#password-error").text("Password must be at least 6 characters.").show();
-            isValid = false;
-        } else {
-            $("#password-error").hide();
-        }
-
-        if (!confirmPassword) {
-            $("#confirm-password-error").text("Confirm Password is required.").show();
-            isValid = false;
-        } else if (confirmPassword !== password) {
-            $("#confirm-password-error").text("Confirm Password must match the password.").show();
-            isValid = false;
-        } else {
-            $("#confirm-password-error").hide();
-        }
-
-        if (!gender) {
-            $("#gender-error").text("Gender is required.").show();
-            isValid = false;
-        } else {
-            $("#gender-error").hide();
-        }
-
-        if (!dateOfBirth) {
-            $("#date-of-birth-error").text("Date of Birth is required.").show();
-            isValid = false;
-        } else if (!$.validator.methods.validDate.call(this, dateOfBirth, $("#date-of-birth")[0])) {
-            $("#date-of-birth-error").text("Date of Birth must be a valid past date.").show();
-            isValid = false;
-        } else {
-            $("#date-of-birth-error").hide();
-        }
-
-        if (!imageFile) {
-            $("#image-error").text("Image is required.").show();
-            isValid = false;
-        } else {
-            var validTypes = ["image/jpeg", "image/png", "image/gif"];
-            var maxSize = 5 * 1024 * 1024; 
-            if (!validTypes.includes(imageFile.type)) {
-                $("#image-error").text("Image must be JPEG, PNG, or GIF.").show();
-                isValid = false;
-            } else if (imageFile.size > maxSize) {
-                $("#image-error").text("Image size must not exceed 5MB.").show();
-                isValid = false;
-            } else {
-                $("#image-error").hide();
-            }
-        }
-
-        if (isValid) {
+        if (validateForm(config)) {
+            console.log("Form is valid, submitting...");
             var formData = new FormData();
             formData.append("Name", name);
             formData.append("Email", email);

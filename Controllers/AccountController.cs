@@ -115,5 +115,13 @@ namespace LoginRegistrationMVC.Controllers
             System.Web.Security.FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+
+
+
+        [Authorize]
+        public ActionResult Chat()
+        {
+            return View();
+        }
     }
 }

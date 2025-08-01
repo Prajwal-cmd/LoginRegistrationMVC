@@ -364,6 +364,26 @@ body {
     border-color: #bee5eb;
 }
 
+
+
+.chat-messages {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+    .chat-messages p {
+        margin: 5px 0;
+        word-wrap: break-word;
+    }
+
+    .chat-messages strong {
+        color: #007bff;
+    }
+
+.icon-chat:before {
+    content: "\f086"; 
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .sidebar {

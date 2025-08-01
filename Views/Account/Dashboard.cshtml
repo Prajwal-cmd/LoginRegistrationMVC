@@ -28,12 +28,11 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
+   
     <script>
         var loginUrl = "@Url.Action("Login", "Account")";
         var dashboardUrl = "@Url.Action("Dashboard", "Account")";
         var registerUrl = "@Url.Action("Register", "Account")";
     </script>
-    <script src="~/js/site.js"></script>
+  
 }

@@ -30,10 +30,16 @@
         </div>
     }
 
-    @RenderSection("Scripts", required: false)
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+
+    <input type="hidden" id="hdnApiBaseUrl" value="@System.Configuration.ConfigurationManager.AppSettings["ApiBaseUrl"]" />
+    <input type="hidden" id="hdnImageBaseUrl" value="@System.Configuration.ConfigurationManager.AppSettings["ImageBaseUrl"]" />
     <script src="~/js/site.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+
 </body>
 
 @functions {

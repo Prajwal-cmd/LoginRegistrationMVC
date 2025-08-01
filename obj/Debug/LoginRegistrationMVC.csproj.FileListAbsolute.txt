@@ -93,3 +93,16 @@ C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\System.Web.Http.WebHost.dll
 C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\System.Net.Http.Formatting.xml
 C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\System.Web.Http.xml
 C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\System.Web.Http.WebHost.xml
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.Owin.dll
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.Owin.Security.dll
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Owin.dll
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.AspNet.SignalR.Core.pdb
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.AspNet.SignalR.SystemWeb.pdb
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.Owin.xml
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Hp\Desktop\asp.net\LoginRegistrationMVC\bin\Microsoft.Owin.Security.xml

@@ -366,23 +366,49 @@ body {
 
 
 
-.chat-messages {
-    background-color: #f8f9fa;
-    border-radius: 4px;
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-width: 800px;
+    margin: 20px auto;
 }
 
-    .chat-messages p {
-        margin: 5px 0;
-        word-wrap: break-word;
-    }
-
-    .chat-messages strong {
-        color: #007bff;
-    }
-
-.icon-chat:before {
-    content: "\f086"; 
+.chat-list {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
 }
+
+.message-area {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
+
+.input-area {
+    display: flex;
+    padding: 10px;
+}
+
+    .input-area input {
+        flex-grow: 1;
+        margin-right: 10px;
+    }
+
+    .input-area button {
+        flex-shrink: 0;
+    }
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
 
 /* Responsive Design */
 @media (max-width: 768px) {

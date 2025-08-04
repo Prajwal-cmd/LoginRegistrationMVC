@@ -24,83 +24,95 @@ const imageBaseUrl = document.getElementById('hdnImageBaseUrl').value;
 
 
 
-// Chat functionality
 var chat = null;
 var myUserName = null;
 
-function initializeChat() {
-    chat = $.connection.chatHub;
 
-    if (typeof chat === 'undefined') {
-        console.error('Chat hub proxy is undefined. Check SignalR setup.');
+function initializeChat() {
+    var chatHub = $.connection.chatHub;
+
+    // Ensure chatHub is defined
+    if (!chatHub) {
+        console.error("SignalR hub not found. Check script loading and startup.cs.");
         return;
     }
 
-    // Handle incoming public messages
-    chat.client.broadcastMessage = function (user, message) {
-        var messageHtml = '<p><strong>' + user + ':</strong> ' + message + '</p>';
-        $('#messageContainer').append(messageHtml);
-        $('#messageContainer').scrollTop($('#messageContainer')[0].scrollHeight);
-    };
-
-    // Handle incoming private messages
-    chat.client.receivePrivateMessage = function (fromUser, message) {
-        var messageHtml = '<p><em>Private from ' + fromUser + ':</em> ' + message + '</p>';
-        $('#messageContainer').append(messageHtml);
-        $('#messageContainer').scrollTop($('#messageContainer')[0].scrollHeight);
-    };
-
-    // Handle error messages from server
-    chat.client.sendError = function (errorMessage) {
+    // Client methods
+    chatHub.client.sendError = function (errorMessage) {
         alert(errorMessage);
     };
 
-    // Receive my username
-    chat.client.updateUserName = function (userName) {
-        myUserName = userName;
-        console.log('My username: ' + myUserName);
+    chatHub.client.sendSuccess = function (successMessage) {
+        alert(successMessage);
+        chatHub.server.requestChatList();
     };
 
-    // Start the connection
+    chatHub.client.broadcastMessage = function (userName, message) {
+        var isSent = myUserName === userName;
+        var $message = $('<div class="message ' + (isSent ? 'sent' : 'received') + '"><strong>' + userName + ':</strong> ' + message + '<div class="message-timestamp">' + new Date().toLocaleTimeString() + '</div></div>');
+        $('#messages').append($message);
+    };
+
+    chatHub.client.updateChatList = function (chats) {
+        var $chatSelector = $('#chatSelector');
+        $chatSelector.empty();
+        $chatSelector.append('<option value="0">Select a Chat</option>');
+        $.each(chats, function (index, chat) {
+            $chatSelector.append('<option value="' + chat.Id + '">' + 'Chat ' + chat.Id + ' (' + chat.ChatType + ')</option>');
+        });
+    };
+
+    chatHub.client.updateChatHistory = function (messages) {
+        var $messages = $('#messages');
+        $messages.empty();
+        $.each(messages, function (index, message) {
+            var isSent = myUserName === message.SenderName;
+            var $message = $('<div class="message ' + (isSent ? 'sent' : 'received') + '"><strong>' + message.SenderName + ':</strong> ' + message.MessageText + '<div class="message-timestamp">' + message.Timestamp + '</div></div>');
+            $messages.append($message);
+        });
+    };
+
+    function loadChatHistory() {
+        var chatId = $('#chatSelector').val();
+        if (chatId && chatId != 0) {
+            chatHub.server.requestChatHistory(parseInt(chatId));
+        } else {
+            $('#messages').empty();
+        }
+    }
+
+    $('#chatSelector').on('change', loadChatHistory);
+
     $.connection.hub.start().done(function () {
-        console.log('Connected to chat hub');
-    }).fail(function (error) {
-        console.error('Could not connect to chat hub: ' + error);
-    });
+        chatHub.server.requestChatList();
 
-    // Send public message on button click
-    $('#sendButton').click(function () {
-        var message = $('#messageInput').val();
-        if (message) {
-            chat.server.sendMessage(message);
-            $('#messageInput').val(''); 
-        }
-    });
-
-    // Send private message on button click
-    $('#sendPrivateButton').click(function () {
-        var toUserName = $('#privateUserInput').val();
-        var message = $('#messageInput').val();
-        if (toUserName && message && toUserName !== myUserName) {
-            chat.server.sendPrivateMessage(toUserName, message);
-            $('#messageInput').val(''); 
-            $('#privateUserInput').val(''); 
-        } else if (toUserName === myUserName) {
-            alert('Cannot send private message to yourself!');
-        }
-    });
-
-    $('#messageInput').keypress(function (e) {
-        if (e.which === 13) {
-            if ($('#sendPrivateButton').is(':focus')) {
-                $('#sendPrivateButton').click();
+        $('#createChatButton').click(function () {
+            var chatType = prompt("Enter chat type (OneOnOne or Group):", "Group");
+            if (chatType && (chatType === "OneOnOne" || chatType === "Group")) {
+                var participantsInput = prompt("Enter participant usernames (comma-separated):", "");
+                if (participantsInput) {
+                    var participantUserNames = participantsInput.split(',').map(name => name.trim());
+                    chatHub.server.createChat(chatType, participantUserNames);
+                }
             } else {
-                $('#sendButton').click();
+                alert("Invalid chat type. Use 'OneOnOne' or 'Group'.");
             }
-        }
+        });
+
+        $('#sendButton').click(function () {
+            var chatId = $('#chatSelector').val();
+            var message = $('#messageInput').val();
+            if (chatId && message && chatId != 0) {
+                chatHub.server.sendMessage(parseInt(chatId), message);
+                $('#messageInput').val('');
+            } else {
+                alert("Please select a chat and enter a message.");
+            }
+        });
+    }).fail(function (error) {
+        console.error('SignalR connection failed: ' + error);
     });
 }
-
 
 
 
